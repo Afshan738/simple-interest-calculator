@@ -1,40 +1,28 @@
-#!/bin/bash
+   #!/bin/bash
+   # This script calculates simple interest given principal,
+   # annual rate of interest and time period in years.
 
-# Script to calculate simple interest
+   # Do not use this in production. Sample purpose only.
 
-echo "Simple Interest Calculator"
-echo "--------------------------"
+   # Author: Upkar Lidder (IBM)
+   # Additional Authors:
+   # Afshan-Qasim
 
-# Read principal amount
-read -p "Enter the principal amount: " principal
+   # Input:
+   # p, principal amount
+   # t, time period in years
+   # r, annual rate of interest
 
-# Read annual interest rate
-read -p "Enter the annual interest rate (e.g., 5 for 5%): " rate
+   # Output:
+   # simple interest = p*t*r
 
-# Read time period in years
-read -p "Enter the time period in years: " time
+   echo "Enter the principal:"
+   read p
+   echo "Enter rate of interest per year:"
+   read r
+   echo "Enter time period in years:"
+   read t
 
-# Basic input validation (check if inputs are numbers)
-if ! [[ "$principal" =~ ^[0-9]+(\.[0-9]+)?$ ]] || \
-   ! [[ "$rate" =~ ^[0-9]+(\.[0-9]+)?$ ]] || \
-   ! [[ "$time" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
-  echo "Error: Principal, rate, and time must be numeric values."
-  exit 1
-fi
-
-# Calculate simple interest using bc for floating point arithmetic
-# Formula: Interest = (Principal * Rate * Time) / 100
-interest=$(echo "scale=2; ($principal * $rate * $time) / 100" | bc)
-
-# Calculate total amount
-total_amount=$(echo "scale=2; $principal + $interest" | bc)
-
-echo "--------------------------"
-echo "Principal Amount: $principal"
-echo "Annual Interest Rate: $rate%"
-echo "Time Period: $time years"
-echo "Calculated Simple Interest: $interest"
-echo "Total Amount (Principal + Interest): $total_amount"
-echo "--------------------------"
-
-exit 0
+   s=`expr $p \* $t \* $r / 100`
+   echo "The simple interest is: "
+   echo $s
